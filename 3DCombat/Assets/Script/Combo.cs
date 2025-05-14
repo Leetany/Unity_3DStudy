@@ -31,7 +31,7 @@ public class Combo : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //방어
+            playerAnim.Play("ARPG_Samurai_Parry");
         }
     }
 
@@ -44,6 +44,11 @@ public class Combo : MonoBehaviour
     {
         if (!inputSmash)
         {
+            HitStop.instance.stopTime = 0f;
+            HitStop.instance.timeScaleRecoverySpeed = 5;
+            HitStop.instance.shakeFrequency = 0.2f;
+            HitStop.instance.shakeIntensity = 0.2f;
+
             if (comboStep == 2)
             {
                 playerAnim.Play("ARPG_Samurai_Attack_Combo3");
@@ -56,17 +61,22 @@ public class Combo : MonoBehaviour
 
         if (inputSmash)
         {
+            HitStop.instance.stopTime = 0.2f;
+            HitStop.instance.timeScaleRecoverySpeed = 5;
+            HitStop.instance.shakeFrequency = 0.3f;
+            HitStop.instance.shakeIntensity = 0.3f;
+
             if (comboStep == 1)
             {
-                //playAnim.Play("");
+                playerAnim.Play("ARPG_Samurai_Attack_Sprint");
             }
             if (comboStep == 2)
             {
-                //playAnim.Play("");
+                playerAnim.Play("ARPG_Samurai_Attack_Heavy2");
             }
             if (comboStep == 3)
             {
-                //playAnim.Play("");
+                playerAnim.Play("ARPG_Samurai_Attack_Heavy1_Start");
             }
         }
     }
